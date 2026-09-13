@@ -1,0 +1,7 @@
+{
+  "name": "devia-technologic-laravel",
+  "private": true,
+  "scripts": {
+    "build": "echo 'PHP Application - Build Step Bypassed Successfully'"
+  }
+}
