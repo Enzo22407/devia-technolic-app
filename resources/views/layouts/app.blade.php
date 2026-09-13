@@ -86,7 +86,7 @@
         .user-nav {
             display: flex;
             align-items: center;
-            gap: 1.25rem;
+            gap: 1rem;
         }
 
         .user-info-chip {
@@ -113,6 +113,22 @@
         .role-gestionnaire { background: #fef3c7; color: #92400e; border: 1px solid #fde68a; }
         .role-responsable_pedagogique { background: #f3e8ff; color: #6b21a8; border: 1px solid #e9d5ff; }
         .role-admin_systeme { background: #ffe4e6; color: #9f1239; border: 1px solid #fecdd3; }
+
+        .btn-settings {
+            background: #f1f5f9;
+            color: var(--text-heading);
+            border: 1px solid var(--border-subtle);
+            padding: 8px 14px;
+            border-radius: 10px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            transition: all 0.2s ease;
+        }
+        .btn-settings:hover { background: #e2e8f0; transform: translateY(-1px); }
 
         .btn-logout {
             background: #fff1f2;
@@ -263,6 +279,7 @@
                     <span style="font-weight: 700; color: var(--text-heading);">{{ auth()->user()->name }}</span>
                     <span class="role-badge role-{{ auth()->user()->role }}">{{ ucfirst(str_replace('_', ' ', auth()->user()->role)) }}</span>
                 </div>
+                <a href="{{ route('profile.edit') }}" class="btn-settings">⚙️ Paramètres</a>
                 <form action="{{ route('logout') }}" method="POST" style="margin: 0;">
                     @csrf
                     <button type="submit" class="btn-logout">Déconnexion</button>
