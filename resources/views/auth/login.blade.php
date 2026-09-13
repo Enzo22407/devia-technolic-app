@@ -64,7 +64,10 @@
             </div>
 
             <div style="margin-bottom: 2rem;">
-                <label style="display: block; font-size: 0.88rem; font-weight: 700; margin-bottom: 8px; color: var(--text-heading);">Mot de passe *</label>
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+                    <label style="font-size: 0.88rem; font-weight: 700; color: var(--text-heading);">Mot de passe *</label>
+                    <a href="{{ route('password.request') }}" style="font-size: 0.82rem; color: var(--brand-primary); text-decoration: none; font-weight: 600;">Mot de passe oublié ?</a>
+                </div>
                 <input type="password" name="password" id="inputPassword" value="" placeholder="••••••••" required style="width: 100%; padding: 14px 16px; background: #f8fafc; border: 1.5px solid var(--border-subtle); border-radius: 14px; color: var(--text-heading); font-size: 0.95rem; outline: none; transition: all 0.2s ease;">
             </div>
 

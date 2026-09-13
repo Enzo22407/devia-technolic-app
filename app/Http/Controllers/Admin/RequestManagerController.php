@@ -8,6 +8,10 @@ use App\Models\RequestHistory;
 use App\Models\StudentRequest;
 use Illuminate\Http\Request;
 
+use App\Mail\RequestStatusUpdatedMail;
+use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Mail;
+
 class RequestManagerController extends Controller
 {
     public function updateStatus(Request $request, StudentRequest $studentRequest)
@@ -51,7 +55,15 @@ class RequestManagerController extends Controller
             'link' => route('requests.show', $studentRequest->id),
         ]);
 
-        return back()->with('success', 'Statut de la requête mis à jour avec succès.');
+        if ($studentRequest->student && $studentRequest->student->email) {
+            try {
+                Mail::to($studentRequest->student->email)->send(new RequestStatusUpdatedMail($studentRequest, $validated['comment']));
+            } catch (\Throwable $e) {
+                Log::error('Erreur lors de l\'envoi de la notification e-mail statut: ' . $e->getMessage());
+            }
+        }
+
+        return back()->with('success', 'Statut de la requête mis à jour avec succès et notification e-mail envoyée.');
     }
 
     public function submitPedagogicalOpinion(Request $request, StudentRequest $studentRequest)
@@ -83,6 +95,14 @@ class RequestManagerController extends Controller
             'comment' => "Avis pédagogique (" . ucfirst($validated['opinion']) . ") : " . $validated['comment'],
         ]);
 
-        return back()->with('success', 'Avis pédagogique enregistré et dossier transmis au gestionnaire.');
+        if ($studentRequest->student && $studentRequest->student->email) {
+            try {
+                Mail::to($studentRequest->student->email)->send(new RequestStatusUpdatedMail($studentRequest, "Avis pédagogique émis : " . $validated['comment']));
+            } catch (\Throwable $e) {
+                Log::error('Erreur lors de l\'envoi de la notification e-mail avis pedago: ' . $e->getMessage());
+            }
+        }
+
+        return back()->with('success', 'Avis pédagogique enregistré, dossier transmis et notification e-mail envoyée.');
     }
 }

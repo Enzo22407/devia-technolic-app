@@ -9,7 +9,10 @@ use App\Models\RequestType;
 use App\Models\StudentRequest;
 use App\Models\Notification;
 use App\Models\User;
+use App\Mail\RequestSubmittedMail;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Str;
 
 class RequestController extends Controller
@@ -73,19 +76,33 @@ class RequestController extends Controller
             'comment' => 'Dépôt initial de la requête par l\'étudiant.',
         ]);
 
-        // Notify Admins/Managers
-        $managers = User::whereIn('role', ['gestionnaire', 'admin_systeme'])->get();
-        foreach ($managers as $manager) {
-            Notification::create([
-                'user_id' => $manager->id,
-                'student_request_id' => $studentRequest->id,
-                'title' => 'Nouvelle requête déposée',
-                'message' => "L'étudiant " . auth()->user()->name . " a déposé la requête #" . $refCode,
-                'link' => route('requests.show', $studentRequest->id),
-            ]);
+        // Notify Admins/Managers via Database Notifications & Emails
+        $studentUser = auth()->user();
+        
+        try {
+            Mail::to($studentUser->email)->send(new RequestSubmittedMail($studentRequest, $studentUser->name, true));
+        } catch (\Throwable $e) {
+            Log::error('Erreur d\'envoi email confirmation étudiant: ' . $e->getMessage());
         }
 
-        return redirect()->route('dashboard')->with('success', "Votre requête {$refCode} a été soumise avec succès.");
+        $staffMembers = User::whereIn('role', ['gestionnaire', 'responsable_pedagogique', 'admin_systeme'])->get();
+        foreach ($staffMembers as $staff) {
+            Notification::create([
+                'user_id' => $staff->id,
+                'student_request_id' => $studentRequest->id,
+                'title' => 'Nouvelle requête déposée',
+                'message' => "L'étudiant " . $studentUser->name . " a déposé la requête #" . $refCode,
+                'link' => route('requests.show', $studentRequest->id),
+            ]);
+
+            try {
+                Mail::to($staff->email)->send(new RequestSubmittedMail($studentRequest, $staff->name, false));
+            } catch (\Throwable $e) {
+                Log::error('Erreur d\'envoi email notification staff: ' . $e->getMessage());
+            }
+        }
+
+        return redirect()->route('dashboard')->with('success', "Votre requête {$refCode} a été soumise avec succès et les notifications par email ont été envoyées.");
     }
 
     public function show(StudentRequest $studentRequest)

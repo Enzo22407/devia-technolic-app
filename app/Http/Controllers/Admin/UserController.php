@@ -7,6 +7,10 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 
+use App\Mail\UserCreatedMail;
+use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Mail;
+
 class UserController extends Controller
 {
     public function index(Request $request)
@@ -42,7 +46,7 @@ class UserController extends Controller
             'password' => 'required|string|min:6',
         ]);
 
-        User::create([
+        $user = User::create([
             'name' => $validated['name'],
             'matricule' => $validated['matricule'],
             'email' => $validated['email'],
@@ -51,7 +55,13 @@ class UserController extends Controller
             'password' => Hash::make($validated['password']),
         ]);
 
-        return back()->with('success', 'Utilisateur créé avec succès.');
+        try {
+            Mail::to($user->email)->send(new UserCreatedMail($user));
+        } catch (\Throwable $e) {
+            Log::error('Erreur lors de l\'envoi de l\'email de bienvenue: ' . $e->getMessage());
+        }
+
+        return back()->with('success', 'Utilisateur créé avec succès et notification envoyée par e-mail.');
     }
 
     public function update(Request $request, User $user)
