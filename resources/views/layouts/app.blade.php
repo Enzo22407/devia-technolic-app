@@ -3,105 +3,126 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@yield('title', 'Gestion des Requêtes Étudiantes')</title>
+    <title>@yield('title', 'Devia Technologic — Management des Requêtes')</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Outfit:wght@500;600;700;800&display=swap" rel="stylesheet">
     <style>
         :root {
-            --bg-light: #f8fafc;
-            --card-bg: #ffffff;
-            --card-border: #e2e8f0;
-            --primary: #2563eb;
-            --primary-hover: #1d4ed8;
-            --accent-purple: #7c3aed;
-            --text-main: #0f172a;
-            --text-sub: #64748b;
-            --success: #10b981;
-            --warning: #f59e0b;
-            --danger: #ef4444;
-            --info: #0284c7;
+            --bg-page: #f6f8fc;
+            --surface-white: #ffffff;
+            --border-subtle: #e2e8f0;
+            --border-hover: #cbd5e1;
+            
+            /* Curated Color Palette - Multi-toned & Luxurious */
+            --brand-primary: #4f46e5;
+            --brand-violet: #7c3aed;
+            --brand-pink: #ec4899;
+            --brand-emerald: #10b981;
+            --brand-amber: #f59e0b;
+            --brand-rose: #f43f5e;
+            
+            --text-heading: #0f172a;
+            --text-body: #334155;
+            --text-muted: #64748b;
+            
+            --shadow-sm: 0 2px 4px rgba(15, 23, 42, 0.04);
+            --shadow-md: 0 8px 24px rgba(15, 23, 42, 0.06);
+            --shadow-lg: 0 16px 40px rgba(15, 23, 42, 0.08);
+            --shadow-glow: 0 8px 25px rgba(79, 70, 229, 0.25);
         }
 
         * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Plus Jakarta Sans', -apple-system, sans-serif; }
-        html, body { background-color: var(--bg-light); color: var(--text-main); min-height: 100vh; display: flex; flex-direction: column; overflow-x: hidden; width: 100%; }
+        html, body { background-color: var(--bg-page); color: var(--text-body); min-height: 100vh; display: flex; flex-direction: column; overflow-x: hidden; width: 100%; }
 
+        h1, h2, h3, h4, .brand-font { font-family: 'Outfit', 'Plus Jakarta Sans', sans-serif; }
+
+        /* Glassmorphism Navbar */
         .navbar {
-            background: #ffffff;
-            border-bottom: 1px solid var(--card-border);
-            padding: 0.9rem 2rem;
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(16px);
+            border-bottom: 1px solid rgba(226, 232, 240, 0.8);
+            padding: 0.85rem 2.5rem;
             position: sticky;
             top: 0;
             z-index: 100;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03);
         }
 
         .brand-logo {
             display: flex;
             align-items: center;
-            gap: 12px;
+            gap: 14px;
             text-decoration: none;
-            color: var(--text-main);
+            color: var(--text-heading);
         }
 
-        .brand-badge {
-            background: linear-gradient(135deg, var(--primary), var(--accent-purple));
+        .brand-icon-box {
+            background: linear-gradient(135deg, var(--brand-primary) 0%, var(--brand-violet) 50%, var(--brand-pink) 100%);
             color: white;
             font-weight: 800;
-            padding: 6px 14px;
-            border-radius: 10px;
-            font-size: 0.9rem;
+            width: 42px;
+            height: 42px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.1rem;
             letter-spacing: 0.5px;
-            box-shadow: 0 4px 10px rgba(37, 99, 235, 0.25);
+            box-shadow: var(--shadow-glow);
+            transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
         }
+        .brand-logo:hover .brand-icon-box { transform: scale(1.06) rotate(-3deg); }
 
-        .brand-text h1 { font-size: 1.15rem; font-weight: 800; color: var(--text-main); }
-        .brand-text p { font-size: 0.75rem; color: var(--text-sub); }
+        .brand-text h1 { font-size: 1.2rem; font-weight: 800; color: var(--text-heading); letter-spacing: -0.3px; }
+        .brand-text p { font-size: 0.75rem; color: var(--text-muted); font-weight: 500; }
 
         .user-nav {
             display: flex;
             align-items: center;
-            gap: 1rem;
+            gap: 1.25rem;
         }
 
         .user-info-chip {
-            background: #f1f5f9;
-            border: 1px solid var(--card-border);
+            background: var(--surface-white);
+            border: 1px solid var(--border-subtle);
             padding: 6px 14px;
             border-radius: 50px;
             display: flex;
             align-items: center;
             gap: 10px;
             font-size: 0.85rem;
+            box-shadow: var(--shadow-sm);
         }
 
         .role-badge {
             font-size: 0.7rem;
             font-weight: 700;
-            padding: 3px 8px;
-            border-radius: 12px;
+            padding: 3px 10px;
+            border-radius: 20px;
             text-transform: uppercase;
+            letter-spacing: 0.4px;
         }
-        .role-etudiant { background: #dbeafe; color: #1e40af; border: 1px solid #bfdbfe; }
+        .role-etudiant { background: #e0e7ff; color: #3730a3; border: 1px solid #c7d2fe; }
         .role-gestionnaire { background: #fef3c7; color: #92400e; border: 1px solid #fde68a; }
         .role-responsable_pedagogique { background: #f3e8ff; color: #6b21a8; border: 1px solid #e9d5ff; }
-        .role-admin_systeme { background: #fee2e2; color: #991b1b; border: 1px solid #fecaca; }
+        .role-admin_systeme { background: #ffe4e6; color: #9f1239; border: 1px solid #fecdd3; }
 
         .btn-logout {
-            background: #fee2e2;
-            color: #b91c1c;
-            border: 1px solid #fca5a5;
-            padding: 8px 14px;
-            border-radius: 8px;
+            background: #fff1f2;
+            color: #e11d48;
+            border: 1px solid #fecdd3;
+            padding: 8px 16px;
+            border-radius: 10px;
             font-size: 0.85rem;
             font-weight: 600;
             cursor: pointer;
             transition: all 0.2s ease;
         }
-        .btn-logout:hover { background: #fca5a5; color: #7f1d1d; }
+        .btn-logout:hover { background: #ffe4e6; transform: translateY(-1px); }
 
         .main-container {
             max-width: 1280px;
@@ -112,103 +133,113 @@
         }
 
         .alert-success {
-            background: #d1fae5;
-            border: 1px solid #6ee7b7;
-            color: #065f46;
+            background: #ecfdf5;
+            border: 1px solid #a7f3d0;
+            color: #047857;
             padding: 1rem 1.25rem;
-            border-radius: 12px;
+            border-radius: 14px;
             margin-bottom: 1.5rem;
             display: flex;
             align-items: center;
             gap: 10px;
             font-weight: 600;
+            box-shadow: var(--shadow-sm);
         }
 
         .alert-error {
-            background: #fee2e2;
-            border: 1px solid #fca5a5;
-            color: #991b1b;
+            background: #fff1f2;
+            border: 1px solid #fecdd3;
+            color: #be123c;
             padding: 1rem 1.25rem;
-            border-radius: 12px;
+            border-radius: 14px;
             margin-bottom: 1.5rem;
+            box-shadow: var(--shadow-sm);
         }
 
-        /* Grid & Cards */
+        /* Buttons & Actions */
+        .btn-primary {
+            background: linear-gradient(135deg, var(--brand-primary) 0%, var(--brand-violet) 100%);
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 12px;
+            font-weight: 700;
+            font-size: 0.92rem;
+            text-decoration: none;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            box-shadow: var(--shadow-glow);
+            transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 12px 30px rgba(79, 70, 229, 0.35);
+        }
+
+        /* Responsive Grid & Cards */
         .stats-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
             gap: 1.25rem;
             margin-bottom: 2rem;
             width: 100%;
         }
 
         .stat-card {
-            background: var(--card-bg);
-            border: 1px solid var(--card-border);
-            border-radius: 14px;
-            padding: 1.25rem 1.5rem;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
-            transition: transform 0.2s ease;
+            background: var(--surface-white);
+            border: 1px solid var(--border-subtle);
+            border-radius: 18px;
+            padding: 1.35rem 1.5rem;
+            box-shadow: var(--shadow-md);
+            transition: all 0.25s ease;
+            position: relative;
+            overflow: hidden;
         }
-        .stat-card:hover { transform: translateY(-2px); box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08); }
-        .stat-label { font-size: 0.85rem; color: var(--text-sub); margin-bottom: 6px; font-weight: 500; }
-        .stat-value { font-size: 1.8rem; font-weight: 800; color: var(--text-main); }
+        .stat-card:hover { transform: translateY(-3px); box-shadow: var(--shadow-lg); border-color: var(--border-hover); }
+        .stat-label { font-size: 0.85rem; color: var(--text-muted); margin-bottom: 8px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; }
+        .stat-value { font-size: 2.1rem; font-weight: 800; color: var(--text-heading); font-family: 'Outfit', sans-serif; }
 
         .card-panel {
-            background: var(--card-bg);
-            border: 1px solid var(--card-border);
-            border-radius: 14px;
-            padding: 1.5rem;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.04);
+            background: var(--surface-white);
+            border: 1px solid var(--border-subtle);
+            border-radius: 20px;
+            padding: 1.75rem;
+            box-shadow: var(--shadow-md);
             margin-bottom: 2rem;
             width: 100%;
             overflow: hidden;
         }
 
         .table-responsive { width: 100%; overflow-x: auto; margin-top: 1rem; }
-        table { width: 100%; border-collapse: collapse; text-align: left; font-size: 0.9rem; }
-        th { padding: 12px 16px; color: var(--text-sub); border-bottom: 2px solid #f1f5f9; font-weight: 700; font-size: 0.78rem; text-transform: uppercase; background: #f8fafc; }
-        td { padding: 14px 16px; border-bottom: 1px solid #f1f5f9; color: var(--text-main); vertical-align: middle; }
-        tr:hover td { background: #f8fafc; }
-
-        .btn-primary {
-            background: var(--primary);
-            color: white;
-            border: none;
-            padding: 10px 20px;
-            border-radius: 10px;
-            font-weight: 600;
-            font-size: 0.9rem;
-            text-decoration: none;
-            cursor: pointer;
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            box-shadow: 0 3px 8px rgba(37, 99, 235, 0.25);
-            transition: all 0.2s ease;
-        }
-        .btn-primary:hover { background: var(--primary-hover); transform: translateY(-1px); }
+        table { width: 100%; border-collapse: collapse; text-align: left; font-size: 0.92rem; }
+        th { padding: 14px 18px; color: var(--text-muted); border-bottom: 2px solid #f1f5f9; font-weight: 700; font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.5px; background: #fafca02; }
+        td { padding: 16px 18px; border-bottom: 1px solid #f1f5f9; color: var(--text-body); vertical-align: middle; }
+        tr:hover td { background: #fafcfb; }
 
         .status-pill {
-            display: inline-block;
-            padding: 4px 12px;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 5px 14px;
             border-radius: 50px;
-            font-size: 0.75rem;
+            font-size: 0.78rem;
             font-weight: 700;
         }
-        .status-en_attente { background: #fef3c7; color: #b45309; }
-        .status-en_instruction { background: #e0f2fe; color: #0369a1; }
-        .status-avis_pedagogique_requis { background: #f3e8ff; color: #7e22ce; }
-        .status-approuvee { background: #d1fae5; color: #047857; }
-        .status-rejetee { background: #fee2e2; color: #b91c1c; }
+        .status-en_attente { background: #fffbeb; color: #b45309; border: 1px solid #fde68a; }
+        .status-en_instruction { background: #f0f9ff; color: #0369a1; border: 1px solid #bae6fd; }
+        .status-avis_pedagogique_requis { background: #faf5ff; color: #7e22ce; border: 1px solid #e9d5ff; }
+        .status-approuvee { background: #ecfdf5; color: #047857; border: 1px solid #a7f3d0; }
+        .status-rejetee { background: #fff1f2; color: #be123c; border: 1px solid #fecdd3; }
 
         footer {
-            border-top: 1px solid var(--card-border);
-            padding: 1.25rem;
+            border-top: 1px solid var(--border-subtle);
+            padding: 1.5rem;
             text-align: center;
-            font-size: 0.8rem;
-            color: var(--text-sub);
-            background: #ffffff;
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            background: var(--surface-white);
             margin-top: auto;
         }
     </style>
@@ -217,16 +248,16 @@
 <body>
     <nav class="navbar">
         <a href="{{ route('dashboard') }}" class="brand-logo">
-            <span class="brand-badge">DEVIA</span>
+            <div class="brand-icon-box">D</div>
             <div class="brand-text">
-                <h1>Plateforme des Requêtes</h1>
-                <p>Gestion Numérique des Demandes Étudiantes</p>
+                <h1>Devia Technologic</h1>
+                <p>Plateforme de Gestion des Requêtes</p>
             </div>
         </a>
         @auth
             <div class="user-nav">
                 <div class="user-info-chip">
-                    <span style="font-weight: 700;">{{ auth()->user()->name }}</span>
+                    <span style="font-weight: 700; color: var(--text-heading);">{{ auth()->user()->name }}</span>
                     <span class="role-badge role-{{ auth()->user()->role }}">{{ ucfirst(str_replace('_', ' ', auth()->user()->role)) }}</span>
                 </div>
                 <form action="{{ route('logout') }}" method="POST" style="margin: 0;">
@@ -258,7 +289,7 @@
     </main>
 
     <footer>
-        Devia Technologic © {{ date('Y') }} — Plateforme de Gestion des Requêtes Étudiantes. Tous droits réservés.
+        Devia Technologic © {{ date('Y') }} — Système de Gestion des Requêtes. Tous droits réservés.
     </footer>
 </body>
 </html>
