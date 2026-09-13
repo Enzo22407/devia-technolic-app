@@ -1,0 +1,8 @@
+/vendor
+/node_modules
+/storage/*.key
+/storage/logs/*
+.env
+.env.*
+composer.phar
+.git
