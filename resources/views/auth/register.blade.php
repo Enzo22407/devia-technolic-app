@@ -11,7 +11,7 @@
         
         <div style="position: relative; z-index: 2;">
             <div style="display: inline-flex; align-items: center; gap: 8px; background: rgba(255, 255, 255, 0.2); backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.3); padding: 6px 14px; border-radius: 50px; font-size: 0.82rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 1.5rem;">
-                🎓 Espace Inscription
+                Espace Inscription
             </div>
             <h2 style="font-size: 2.2rem; font-weight: 800; line-height: 1.25; margin-bottom: 1rem; color: white;">
                 Rejoignez le Réseau Numérique Devia
@@ -24,14 +24,18 @@
         <div style="position: relative; z-index: 2; margin-top: 2rem;">
             <div style="display: flex; flex-direction: column; gap: 12px;">
                 <div style="display: flex; align-items: center; gap: 12px; background: rgba(255,255,255,0.12); padding: 12px 16px; border-radius: 14px; backdrop-filter: blur(8px);">
-                    <div style="font-size: 1.2rem;">📂</div>
+                    <div style="width: 36px; height: 36px; background: rgba(255,255,255,0.2); border-radius: 10px; display: flex; align-items: center; justify-content: center;">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"></path></svg>
+                    </div>
                     <div>
                         <strong style="display: block; font-size: 0.9rem;">Dépôt 100% Dématérialisé</strong>
                         <span style="font-size: 0.78rem; opacity: 0.85;">Joignez vos pièces justificatives en toute sécurité</span>
                     </div>
                 </div>
                 <div style="display: flex; align-items: center; gap: 12px; background: rgba(255,255,255,0.12); padding: 12px 16px; border-radius: 14px; backdrop-filter: blur(8px);">
-                    <div style="font-size: 1.2rem;">🔔</div>
+                    <div style="width: 36px; height: 36px; background: rgba(255,255,255,0.2); border-radius: 10px; display: flex; align-items: center; justify-content: center;">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path><path d="M13.73 21a2 2 0 0 1-3.46 0"></path></svg>
+                    </div>
                     <div>
                         <strong style="display: block; font-size: 0.9rem;">Notifications Directes</strong>
                         <span style="font-size: 0.78rem; opacity: 0.85;">Soyez informé dès qu'une décision est enregistrée</span>
@@ -54,9 +58,9 @@
             <div style="margin-bottom: 1.25rem;">
                 <label style="display: block; font-size: 0.85rem; font-weight: 700; margin-bottom: 6px; color: var(--text-heading);">Profil / Type d'Accès *</label>
                 <select name="role" required style="width: 100%; padding: 12px 14px; background: #f8fafc; border: 1.5px solid var(--border-subtle); border-radius: 12px; color: var(--text-heading); font-size: 0.92rem; outline: none;">
-                    <option value="etudiant">👨‍🎓 Étudiant / Demandeur</option>
-                    <option value="gestionnaire">📋 Personnel Administratif (Gestionnaire)</option>
-                    <option value="responsable_pedagogique">🎓 Responsable Pédagogique (Enseignant)</option>
+                    <option value="etudiant">Étudiant / Demandeur</option>
+                    <option value="gestionnaire">Personnel Administratif (Gestionnaire)</option>
+                    <option value="responsable_pedagogique">Responsable Pédagogique (Enseignant)</option>
                 </select>
             </div>
 

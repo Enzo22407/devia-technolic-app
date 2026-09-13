@@ -50,7 +50,10 @@
                         @foreach($studentRequest->attachments as $file)
                             <div style="background: #ffffff; border: 1px solid var(--card-border); padding: 10px 14px; border-radius: 10px; display: flex; justify-content: space-between; align-items: center;">
                                 <div>
-                                    <span>📎 <strong>{{ $file->file_name }}</strong></span>
+                                    <span style="display: inline-flex; align-items: center; gap: 6px;">
+                                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21.44 11.05l-9.19 9.19a6 6 0 0 1-8.49-8.49l9.19-9.19a4 4 0 0 1 5.66 5.66l-9.2 9.19a2 2 0 0 1-2.83-2.83l8.49-8.48"></path></svg>
+                                        <strong>{{ $file->file_name }}</strong>
+                                    </span>
                                     <span style="font-size: 0.75rem; color: var(--text-sub); margin-left: 10px;">({{ round($file->file_size / 1024, 1) }} Ko)</span>
                                 </div>
                                 <a href="{{ asset('storage/' . $file->file_path) }}" target="_blank" style="background: #e0f2fe; color: #0369a1; padding: 5px 12px; border-radius: 6px; text-decoration: none; font-size: 0.8rem; font-weight: 600;">Consulter Document</a>
@@ -98,7 +101,10 @@
         <!-- Pedagogical Review Section for Responsable Pedagogique -->
         @if(auth()->user()->isResponsablePedagogique() || auth()->user()->isAdminSysteme())
             <div class="card-panel" style="border-left: 4px solid var(--accent-purple);">
-                <h3 style="font-size: 1.1rem; font-weight: 700; color: var(--text-main); margin-bottom: 1rem;">🎓 Avis Pédagogique</h3>
+                <h3 style="font-size: 1.1rem; font-weight: 700; color: var(--text-main); margin-bottom: 1rem; display: flex; align-items: center; gap: 8px;">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10v6M2 10l10-5 10 5-10 5z"></path><path d="M6 12v5c3 3 9 3 12 0v-5"></path></svg>
+                    Avis Pédagogique
+                </h3>
 
                 @if($studentRequest->pedagogical_opinion !== 'en_attente' && $studentRequest->pedagogical_opinion !== 'non_requis')
                     <div style="margin-bottom: 1rem;">
@@ -134,7 +140,10 @@
         <!-- Final Decision Section for Manager & Admin -->
         @if(auth()->user()->isGestionnaire() || auth()->user()->isAdminSysteme())
             <div class="card-panel" style="border-left: 4px solid var(--primary);">
-                <h3 style="font-size: 1.1rem; font-weight: 700; color: var(--text-main); margin-bottom: 1rem;">📋 Décision Administrative</h3>
+                <h3 style="font-size: 1.1rem; font-weight: 700; color: var(--text-main); margin-bottom: 1rem; display: flex; align-items: center; gap: 8px;">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"></path><rect x="8" y="2" width="8" height="4" rx="1" ry="1"></rect><path d="m9 14 2 2 4-4"></path></svg>
+                    Décision Administrative
+                </h3>
 
                 <form action="{{ route('requests.update-status', $studentRequest->id) }}" method="POST">
                     @csrf

@@ -12,7 +12,7 @@
         
         <div style="position: relative; z-index: 2;">
             <div style="display: inline-flex; align-items: center; gap: 8px; background: rgba(255, 255, 255, 0.2); backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.3); padding: 6px 14px; border-radius: 50px; font-size: 0.82rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 1.5rem;">
-                ✨ Devia Technologic
+                Devia Technologic
             </div>
             <h2 style="font-size: 2.2rem; font-weight: 800; line-height: 1.25; margin-bottom: 1rem; color: white;">
                 Gestion Numérique & Intelligente des Requêtes
@@ -25,14 +25,18 @@
         <div style="position: relative; z-index: 2; margin-top: 2rem;">
             <div style="display: flex; flex-direction: column; gap: 12px;">
                 <div style="display: flex; align-items: center; gap: 12px; background: rgba(255,255,255,0.12); padding: 12px 16px; border-radius: 14px; backdrop-filter: blur(8px);">
-                    <div style="font-size: 1.2rem;">⚡</div>
+                    <div style="width: 36px; height: 36px; background: rgba(255,255,255,0.2); border-radius: 10px; display: flex; align-items: center; justify-content: center;">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg>
+                    </div>
                     <div>
                         <strong style="display: block; font-size: 0.9rem;">Traitement Accéléré</strong>
                         <span style="font-size: 0.78rem; opacity: 0.85;">Suivi étape par étape jusqu'à la décision</span>
                     </div>
                 </div>
                 <div style="display: flex; align-items: center; gap: 12px; background: rgba(255,255,255,0.12); padding: 12px 16px; border-radius: 14px; backdrop-filter: blur(8px);">
-                    <div style="font-size: 1.2rem;">🔒</div>
+                    <div style="width: 36px; height: 36px; background: rgba(255,255,255,0.2); border-radius: 10px; display: flex; align-items: center; justify-content: center;">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
+                    </div>
                     <div>
                         <strong style="display: block; font-size: 0.9rem;">Sécurité & Traçabilité</strong>
                         <span style="font-size: 0.78rem; opacity: 0.85;">Historique d'audit complet par dossier</span>
@@ -56,15 +60,11 @@
                 <label style="display: block; font-size: 0.88rem; font-weight: 700; margin-bottom: 8px; color: var(--text-heading);">
                     Identifiant (Matricule ou Email) *
                 </label>
-                <div style="position: relative;">
-                    <input type="text" name="email" id="inputEmail" value="" placeholder="ex: DEV-2026-001 ou nom@deviatech.com" required style="width: 100%; padding: 14px 16px; background: #f8fafc; border: 1.5px solid var(--border-subtle); border-radius: 14px; color: var(--text-heading); font-size: 0.95rem; outline: none; transition: all 0.2s ease;">
-                </div>
+                <input type="text" name="email" id="inputEmail" value="" placeholder="ex: DEV-2026-001 ou nom@deviatech.com" required style="width: 100%; padding: 14px 16px; background: #f8fafc; border: 1.5px solid var(--border-subtle); border-radius: 14px; color: var(--text-heading); font-size: 0.95rem; outline: none; transition: all 0.2s ease;">
             </div>
 
             <div style="margin-bottom: 2rem;">
-                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
-                    <label style="font-size: 0.88rem; font-weight: 700; color: var(--text-heading);">Mot de passe *</label>
-                </div>
+                <label style="display: block; font-size: 0.88rem; font-weight: 700; margin-bottom: 8px; color: var(--text-heading);">Mot de passe *</label>
                 <input type="password" name="password" id="inputPassword" value="" placeholder="••••••••" required style="width: 100%; padding: 14px 16px; background: #f8fafc; border: 1.5px solid var(--border-subtle); border-radius: 14px; color: var(--text-heading); font-size: 0.95rem; outline: none; transition: all 0.2s ease;">
             </div>
 

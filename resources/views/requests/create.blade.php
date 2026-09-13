@@ -23,7 +23,7 @@
                     <option value="" disabled selected>-- Sélectionnez la catégorie de votre requête --</option>
                     @foreach($types as $t)
                         <option value="{{ $t->id }}" data-attachment="{{ $t->requires_attachment ? '1' : '0' }}" data-pedago="{{ $t->requires_pedagogical_review ? '1' : '0' }}" data-desc="{{ $t->description }}">
-                            {{ $t->title }} {{ $t->requires_attachment ? '📎 (Pièce requise)' : '' }}
+                            {{ $t->title }} {{ $t->requires_attachment ? '(Pièce requise)' : '' }}
                         </option>
                     @endforeach
                 </select>

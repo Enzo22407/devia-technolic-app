@@ -13,8 +13,8 @@
     <!-- Profile Info Card -->
     <div class="card-panel">
         <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 1.5rem; padding-bottom: 1rem; border-bottom: 1px solid var(--border-subtle);">
-            <div style="background: linear-gradient(135deg, var(--brand-primary), var(--brand-violet)); color: white; width: 44px; height: 44px; border-radius: 12px; display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 1.2rem;">
-                👤
+            <div style="background: linear-gradient(135deg, var(--brand-primary), var(--brand-violet)); color: white; width: 44px; height: 44px; border-radius: 12px; display: flex; align-items: center; justify-content: center;">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
             </div>
             <div>
                 <h3 style="font-size: 1.15rem; font-weight: 800; color: var(--text-heading);">Informations Personnelles</h3>
@@ -60,8 +60,8 @@
     <!-- Security & Password Card -->
     <div class="card-panel">
         <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 1.5rem; padding-bottom: 1rem; border-bottom: 1px solid var(--border-subtle);">
-            <div style="background: linear-gradient(135deg, var(--brand-pink), var(--brand-rose)); color: white; width: 44px; height: 44px; border-radius: 12px; display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 1.2rem;">
-                🔒
+            <div style="background: linear-gradient(135deg, var(--brand-pink), var(--brand-rose)); color: white; width: 44px; height: 44px; border-radius: 12px; display: flex; align-items: center; justify-content: center;">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
             </div>
             <div>
                 <h3 style="font-size: 1.15rem; font-weight: 800; color: var(--text-heading);">Sécurité & Mot de Passe</h3>
