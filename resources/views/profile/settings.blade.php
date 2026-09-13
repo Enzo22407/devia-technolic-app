@@ -3,9 +3,15 @@
 @section('title', 'Paramètres du Compte — Devia Technologic')
 
 @section('content')
-<div style="margin-bottom: 2rem;">
-    <h2 style="font-size: 1.6rem; font-weight: 800; color: var(--text-heading);">Paramètres du Compte & Profil</h2>
-    <p style="color: var(--text-muted); font-size: 0.9rem;">Gérez vos informations personnelles, coordonnées et sécurité du compte</p>
+<div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 2rem; flex-wrap: wrap; gap: 1rem;">
+    <div>
+        <h2 style="font-size: 1.6rem; font-weight: 800; color: var(--text-heading);">Paramètres du Compte & Profil</h2>
+        <p style="color: var(--text-muted); font-size: 0.9rem;">Gérez vos informations personnelles, coordonnées et sécurité du compte</p>
+    </div>
+    <a href="{{ route('dashboard') }}" class="btn-back">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
+        Retour au Tableau de Bord
+    </a>
 </div>
 
 <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 1.5rem; width: 100%;">

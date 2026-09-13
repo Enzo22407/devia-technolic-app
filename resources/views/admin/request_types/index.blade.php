@@ -8,10 +8,16 @@
         <h2 style="font-size: 1.6rem; font-weight: 800; color: var(--text-heading);">Configuration des Types de Requêtes</h2>
         <p style="color: var(--text-muted); font-size: 0.9rem;">Gérez les catégories de demandes académiques et leurs exigences de pièces justificatives</p>
     </div>
-    <button onclick="document.getElementById('modalAddType').style.display='flex'" class="btn-primary">
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
-        Nouveau Type
-    </button>
+    <div style="display: flex; gap: 10px; flex-wrap: wrap;">
+        <a href="{{ route('dashboard') }}" class="btn-back">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
+            Retour au Tableau de Bord
+        </a>
+        <button onclick="document.getElementById('modalAddType').style.display='flex'" class="btn-primary">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
+            Nouveau Type
+        </button>
+    </div>
 </div>
 
 <div class="card-panel">

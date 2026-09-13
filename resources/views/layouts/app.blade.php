@@ -143,6 +143,77 @@
         }
         .btn-logout:hover { background: #ffe4e6; transform: translateY(-1px); }
 
+        /* General Back Button Style */
+        .btn-back {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: #ffffff;
+            border: 1.5px solid var(--border-subtle);
+            color: var(--text-heading);
+            padding: 8px 16px;
+            border-radius: 10px;
+            font-size: 0.85rem;
+            font-weight: 700;
+            text-decoration: none;
+            box-shadow: var(--shadow-sm);
+            transition: all 0.2s ease;
+        }
+        .btn-back:hover {
+            background: #f8fafc;
+            border-color: var(--brand-primary);
+            color: var(--brand-primary);
+            transform: translateX(-3px);
+        }
+
+        /* Mobile Burger Toggle & Menu */
+        .burger-toggle {
+            display: none;
+            background: #f1f5f9;
+            border: 1px solid var(--border-subtle);
+            padding: 8px 12px;
+            border-radius: 10px;
+            cursor: pointer;
+            color: var(--text-heading);
+        }
+
+        .mobile-menu {
+            display: none;
+            position: fixed;
+            top: 68px;
+            left: 0;
+            right: 0;
+            background: rgba(255, 255, 255, 0.98);
+            backdrop-filter: blur(16px);
+            border-bottom: 1px solid var(--border-subtle);
+            padding: 1.25rem;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+            z-index: 999;
+            flex-direction: column;
+            gap: 0.75rem;
+        }
+        .mobile-menu.open { display: flex; }
+
+        .mobile-nav-link {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 12px 16px;
+            border-radius: 12px;
+            color: var(--text-heading);
+            font-weight: 700;
+            font-size: 0.92rem;
+            text-decoration: none;
+            background: #f8fafc;
+            border: 1px solid var(--border-subtle);
+        }
+
+        @media (max-width: 768px) {
+            .user-nav { display: none; }
+            .burger-toggle { display: inline-flex; align-items: center; justify-content: center; }
+            .navbar { padding: 0.85rem 1.25rem; }
+        }
+
         .main-container {
             max-width: 1280px;
             width: 100%;
@@ -288,7 +359,56 @@
                     <button type="submit" class="btn-logout">Déconnexion</button>
                 </form>
             </div>
+
+            <button class="burger-toggle" onclick="document.getElementById('mobileMenu').classList.toggle('open')" aria-label="Menu Mobile">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
+            </button>
         @endauth
+    </nav>
+
+    @auth
+        <div class="mobile-menu" id="mobileMenu">
+            <div style="padding: 6px 12px; margin-bottom: 4px; display: flex; justify-content: space-between; align-items: center; background: #ffffff; border-radius: 10px; border: 1px solid var(--border-subtle);">
+                <span style="font-weight: 700; color: var(--text-heading); font-size: 0.88rem;">{{ auth()->user()->name }}</span>
+                <span class="role-badge role-{{ auth()->user()->role }}">{{ ucfirst(str_replace('_', ' ', auth()->user()->role)) }}</span>
+            </div>
+
+            <a href="{{ route('dashboard') }}" class="mobile-nav-link">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"></rect><rect x="14" y="3" width="7" height="7"></rect><rect x="14" y="14" width="7" height="7"></rect><rect x="3" y="14" width="7" height="7"></rect></svg>
+                Tableau de Bord
+            </a>
+
+            @if(auth()->user()->isEtudiant())
+                <a href="{{ route('requests.create') }}" class="mobile-nav-link" style="color: var(--brand-primary); border-color: #c7d2fe;">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
+                    Nouvelle Requête
+                </a>
+            @endif
+
+            @if(auth()->user()->isAdminSysteme())
+                <a href="{{ route('admin.users.index') }}" class="mobile-nav-link">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle></svg>
+                    Gérer les Utilisateurs
+                </a>
+                <a href="{{ route('admin.request-types.index') }}" class="mobile-nav-link">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><line x1="9" y1="3" x2="9" y2="21"></line></svg>
+                    Types de Requêtes
+                </a>
+            @endif
+
+            <a href="{{ route('profile.edit') }}" class="mobile-nav-link">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"></circle><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path></svg>
+                Paramètres du Compte
+            </a>
+
+            <form action="{{ route('logout') }}" method="POST" style="margin-top: 4px;">
+                @csrf
+                <button type="submit" class="mobile-nav-link" style="width: 100%; color: #e11d48; border-color: #fecdd3; background: #fff1f2; justify-content: center; cursor: pointer;">
+                    Déconnexion
+                </button>
+            </form>
+        </div>
+    @endauth
     </nav>
 
     <main class="main-container">
