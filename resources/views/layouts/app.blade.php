@@ -14,7 +14,7 @@
             --border-subtle: #e2e8f0;
             --border-hover: #cbd5e1;
             
-            /* Curated Color Palette - Multi-toned & Luxurious */
+            /* Curated Color Palette */
             --brand-primary: #4f46e5;
             --brand-violet: #7c3aed;
             --brand-pink: #ec4899;
@@ -33,23 +33,26 @@
         }
 
         * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Plus Jakarta Sans', -apple-system, sans-serif; }
-        html, body { background-color: var(--bg-page); color: var(--text-body); min-height: 100vh; display: flex; flex-direction: column; overflow-x: hidden; width: 100%; }
+        html, body { background-color: var(--bg-page); color: var(--text-body); min-height: 100vh; display: flex; flex-direction: column; overflow-x: hidden; width: 100%; padding-top: 72px; }
 
         h1, h2, h3, h4, .brand-font { font-family: 'Outfit', 'Plus Jakarta Sans', sans-serif; }
 
-        /* Glassmorphism Navbar */
+        /* Fixed Navbar pinned to top */
         .navbar {
-            background: rgba(255, 255, 255, 0.9);
+            background: rgba(255, 255, 255, 0.95);
             backdrop-filter: blur(16px);
-            border-bottom: 1px solid rgba(226, 232, 240, 0.8);
+            border-bottom: 1px solid rgba(226, 232, 240, 0.85);
             padding: 0.85rem 2.5rem;
-            position: sticky;
+            position: fixed;
             top: 0;
-            z-index: 100;
+            left: 0;
+            right: 0;
+            width: 100%;
+            z-index: 1000;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
         }
 
         .brand-logo {
@@ -214,7 +217,7 @@
 
         .table-responsive { width: 100%; overflow-x: auto; margin-top: 1rem; }
         table { width: 100%; border-collapse: collapse; text-align: left; font-size: 0.92rem; }
-        th { padding: 14px 18px; color: var(--text-muted); border-bottom: 2px solid #f1f5f9; font-weight: 700; font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.5px; background: #fafca02; }
+        th { padding: 14px 18px; color: var(--text-muted); border-bottom: 2px solid #f1f5f9; font-weight: 700; font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.5px; background: #fafcfb; }
         td { padding: 16px 18px; border-bottom: 1px solid #f1f5f9; color: var(--text-body); vertical-align: middle; }
         tr:hover td { background: #fafcfb; }
 
